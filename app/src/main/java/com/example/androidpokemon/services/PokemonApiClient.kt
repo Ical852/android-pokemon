@@ -12,10 +12,10 @@ import retrofit2.http.Url
 
 interface PokemonApiClient {
     @GET("pokemon")
-    suspend fun getAllPokemon(): PokemonModel
+    suspend fun getAllPokemon(): PokemonModel?
 
     @GET()
-    suspend fun extendPokemon(@Url url: String): PokemonModel
+    suspend fun extendPokemon(@Url url: String): PokemonModel?
 
     @GET
     suspend fun getPokemonDetail(@Url url: String): PokemonDetailModel?
