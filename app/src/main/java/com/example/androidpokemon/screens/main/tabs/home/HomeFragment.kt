@@ -32,7 +32,51 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupBehavior()
         pokemonListInit()
+    }
+
+    private fun setupBehavior() {
+        viewModel.count.observe(viewLifecycleOwner) {
+            binding.loadingCount.text = it.toString()
+        }
+
+        viewModel.extendCount.observe(viewLifecycleOwner) {
+            binding.extendLoadingCount.text = it.toString()
+        }
+
+        viewModel.loading.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.mainContent.visibility = View.GONE
+                binding.loadingContent.visibility = View.VISIBLE
+            }
+        }
+
+        viewModel.extendLoading.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.loadMoreBtn.visibility = View.GONE
+                binding.extendLoadingContent.visibility = View.VISIBLE
+            }
+        }
+
+        viewModel.failed.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.mainContent.visibility = View.GONE
+                binding.retryContent.visibility = View.VISIBLE
+            }
+        }
+
+        viewModel.extendFailed.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.loadMoreBtn.visibility = View.GONE
+                binding.extendRetryContent.visibility = View.VISIBLE
+            }
+        }
+
+        binding.retryBtn.setOnClickListener {
+            viewModel.fetch()
+            binding.retryContent.visibility = View.GONE
+        }
     }
 
     private val pokemonListAdapter by lazy {
@@ -49,7 +93,21 @@ class HomeFragment : Fragment() {
         binding.rvPokemon.adapter = pokemonListAdapter
 
         viewModel.pokemons.observe(viewLifecycleOwner) {
+            val current = it
+            binding.loadMoreBtn.setOnClickListener {
+                viewModel.fetch("extend", viewModel.pokemons.value!!.next, current)
+            }
+            binding.retryExtendBtn.setOnClickListener {
+                viewModel.fetch("extend", viewModel.pokemons.value!!.next, current)
+                binding.extendRetryContent.visibility = View.GONE
+            }
             if (it != null) {
+                binding.loadingContent.visibility = View.GONE
+                binding.extendLoadingContent.visibility = View.GONE
+                binding.mainContent.visibility = View.VISIBLE
+                binding.loadMoreBtn.visibility = View.VISIBLE
+                binding.retryContent.visibility = View.GONE
+                binding.extendRetryContent.visibility = View.GONE
                 pokemonListAdapter.updateData(it.results!!)
             }
         }

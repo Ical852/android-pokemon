@@ -1,5 +1,6 @@
 package com.example.androidpokemon.screens.main.tabs.home
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,9 +18,11 @@ class HomeViewModel(val repository: PokemonRepository): ViewModel() {
     val loading by lazy { MutableLiveData<Boolean>() }
     val extendLoading by lazy { MutableLiveData<Boolean>() }
     val failed by lazy { MutableLiveData<Boolean>() }
+    val extendFailed by lazy { MutableLiveData<Boolean>() }
     val message by lazy { MutableLiveData<String>() }
     val pokemons by lazy { MutableLiveData<PokemonModel?>(null) }
     val count by lazy { MutableLiveData<Int>(0) }
+    val extendCount by lazy { MutableLiveData<Int>(0) }
 
     init {
         fetch()
@@ -37,6 +40,7 @@ class HomeViewModel(val repository: PokemonRepository): ViewModel() {
         }
 
         failed.value = false
+        extendFailed.value = false
         viewModelScope.launch {
             try {
                 var results: PokemonModel? = null
@@ -76,7 +80,11 @@ class HomeViewModel(val repository: PokemonRepository): ViewModel() {
                     if (species == null) throw Exception("Something Went Wrong")
                     value.detail!!.setPokemonSpeciesDetail(species)
 
-                    count.value = count.value?.plus(1)
+                    if (type == "extend") {
+                        extendCount.value = extendCount.value?.plus(1)
+                    } else {
+                        count.value = count.value?.plus(1)
+                    }
                 }
 
                 for ((index, value) in list!!.withIndex()) {
@@ -93,14 +101,28 @@ class HomeViewModel(val repository: PokemonRepository): ViewModel() {
                     } catch (_: Exception){}
                 }
 
-                pokemons.value = results
+                if (type == "extend") {
+                    pokemons.value!!.updateValues(results)
+                    pokemons.value = pokemons.value
+                } else {
+                    pokemons.value = results
+                }
+
                 loading.value = false
                 extendLoading.value = false
+                count.value = 0
+                extendCount.value = 0
             } catch (e: Exception) {
                 message.value = "Something went wrong " + e.message
                 loading.value = false
                 extendLoading.value = false
-                failed.value = true
+                count.value = 0
+                extendCount.value = 0
+                if (type == "extend") {
+                    extendFailed.value = true
+                } else {
+                    failed.value = true
+                }
             }
         }
     }
