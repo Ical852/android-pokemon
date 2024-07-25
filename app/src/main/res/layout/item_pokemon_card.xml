@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@drawable/item_pokemon_bg"
+    android:layout_height="wrap_content"
+    android:elevation="5dp"
+    android:layout_marginHorizontal="6dp"
+    android:layout_marginBottom="12dp"
+    android:id="@+id/pokemonCard">
+
+    <TextView
+        android:id="@+id/pokemonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Pikachu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pokemonName">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/firstBadge"
+                layout="@layout/pokemon_type_badge"
+                />
+
+            <include
+                android:id="@+id/secondBadge"
+                layout="@layout/pokemon_type_badge"
+                />
+
+        </LinearLayout>
+        
+        <ImageView
+            android:id="@+id/pokemonImg"
+            android:scaleType="fitCenter"
+            android:src="@drawable/pokemon_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,32 +2,33 @@ package com.example.androidpokemon.models.getpokemondetailmodels
 
 import com.example.androidpokemon.models.getpokemonspeciesmodel.GetPokemonSpeciesModel
 import com.example.androidpokemon.utils.Utils
+import java.io.Serializable
 
 data class TypeModel(
     val slot: Int?,
     val type: TypeDetailModel?
-)
+): Serializable
 
 data class TypeDetailModel(
     val name: String?,
     val url: String?
-)
+): Serializable
 
 data class StatsModel(
     val baseStat: Int?,
     val effort: Int?,
     val stat: StatsDetailModel?
-)
+): Serializable
 
 data class StatsDetailModel(
     val name: String?,
     val url: String?
-)
+): Serializable
 
 data class SpeciesModel(
     val name: String?,
     val url: String?
-)
+): Serializable
 
 data class PokemonDetailModel(
     var bgColor: String?,
@@ -50,21 +51,21 @@ data class PokemonDetailModel(
     val stats: List<StatsModel>?,
     val types: List<TypeModel>?,
     var evolutions: List<PokemonDetailModel>? = null
-) {
+): Serializable {
+    init {
+        this.bgColor = Utils().getPokeColor(this.types!![0].type!!.name!!)
+    }
+
     fun setPokemonGroup(group: EggGroupModel) {
         this.group = group
     }
 
-    fun setEvolutions(evolutions: List<PokemonDetailModel>) {
+    fun setPokemonEvolutions(evolutions: List<PokemonDetailModel>) {
         this.evolutions = evolutions
     }
 
-    fun setSpeciesDetail(speciesDetail: GetPokemonSpeciesModel) {
+    fun setPokemonSpeciesDetail(speciesDetail: GetPokemonSpeciesModel) {
         this.speciesDetail = speciesDetail
-    }
-
-    fun setColor(type: String) {
-        this.bgColor = Utils().getPokeColor(type)
     }
 }
 
@@ -72,43 +73,43 @@ data class PokemonDetailModel(
 data class MoveModel(
     val move: MoveDetailModel?,
     val versionGroupDetails: List<VersionGroupDetailsModel>?
-)
+): Serializable
 
 data class MoveDetailModel(
     val name: String?,
     val url: String?
-)
+): Serializable
 
 data class VersionGroupDetailsModel(
     val levelLearnedAt: Int?,
     val moveLearnMethod: MoveLearnMethodModel?,
     val versionGroup: VersionGroupModel?
-)
+): Serializable
 
 data class MoveLearnMethodModel(
     val name: String?,
     val url: String?
-)
+): Serializable
 
 data class VersionGroupModel(
     val name: String?,
     val url: String?
-)
+): Serializable
 
 data class FormsModel(
     val name: String?,
     val url: String?
-)
+): Serializable
 
 data class EggGroupModel(
     val id: Int?,
     val name: String?
-)
+): Serializable
 
 data class CriesModel(
     val latest: String?,
     val legacy: String?
-)
+): Serializable
 
 data class SpriteModel(
     val backDefault: String?,
@@ -120,7 +121,7 @@ data class SpriteModel(
     val frontShiny: String?,
     val frontShinyFemale: String?,
     val other: OtherModel?
-) {
+): Serializable {
     fun toJson(): Map<String, Any?> {
         return mapOf(
             "back_default" to this.backDefault,
@@ -139,26 +140,26 @@ data class SpriteModel(
 data class DreamWorldModel(
     val frontDefault: String?,
     val frontFemale: String?
-)
+): Serializable
 
 data class HomeModel(
     val frontDefault: String?,
     val frontFemale: String?,
     val frontShiny: String?,
     val frontShinyFemale: String?
-)
+): Serializable
 
 data class OfficialArtworkModel(
     val frontDefault: String?,
     val frontShiny: String?
-)
+): Serializable
 
 data class OtherModel(
     val dreamWorld: DreamWorldModel?,
     val home: HomeModel?,
     val officialArtwork: OfficialArtworkModel?,
     val showdown: ShowdownModel?
-)
+): Serializable
 
 data class ShowdownModel(
     val backDefault: String?,
@@ -169,7 +170,7 @@ data class ShowdownModel(
     val frontFemale: String?,
     val frontShiny: String?,
     val frontShinyFemale: String?
-) {
+): Serializable {
     fun toJson(): Map<String, Any?> {
         return mapOf(
             "back_default" to this.backDefault,
@@ -187,10 +188,10 @@ data class ShowdownModel(
 data class AbilityDetailModel(
     val name: String?,
     val url: String?
-)
+): Serializable
 
 data class AbilityModel(
     val ability: AbilityDetailModel?,
     val isHidden: Boolean?,
     val slot: Int?
-)
+): Serializable
