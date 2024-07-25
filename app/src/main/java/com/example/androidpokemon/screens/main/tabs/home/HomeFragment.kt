@@ -62,6 +62,7 @@ class HomeFragment : Fragment() {
         viewModel.failed.observe(viewLifecycleOwner) {
             if (it) {
                 binding.mainContent.visibility = View.GONE
+                binding.loadingContent.visibility = View.GONE
                 binding.retryContent.visibility = View.VISIBLE
             }
         }
@@ -69,6 +70,7 @@ class HomeFragment : Fragment() {
         viewModel.extendFailed.observe(viewLifecycleOwner) {
             if (it) {
                 binding.loadMoreBtn.visibility = View.GONE
+                binding.extendLoadingContent.visibility = View.GONE
                 binding.extendRetryContent.visibility = View.VISIBLE
             }
         }
@@ -83,7 +85,7 @@ class HomeFragment : Fragment() {
         PokemonCardAdapter(arrayListOf()) { pokemon ->
             startActivity(
                 Intent(requireActivity(), DetailActivity::class.java)
-                    .putExtra("pokemon_detail", pokemon)
+                    .putExtra("pokemon_detail", pokemon.detail)
             )
         }
     }

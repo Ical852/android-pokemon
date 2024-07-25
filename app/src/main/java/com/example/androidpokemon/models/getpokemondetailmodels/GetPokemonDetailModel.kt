@@ -53,7 +53,7 @@ data class PokemonDetailModel(
     var evolutions: List<PokemonDetailModel>? = null
 ): Serializable {
     init {
-        this.bgColor = Utils().getPokeColor(this.types!![0].type!!.name!!)
+        this.bgColor = types?.firstOrNull()?.type?.name?.let { Utils().getPokeColor(it) }
     }
 
     fun setPokemonGroup(group: EggGroupModel) {
