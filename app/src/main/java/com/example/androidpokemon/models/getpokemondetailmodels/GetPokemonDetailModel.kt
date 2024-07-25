@@ -120,7 +120,21 @@ data class SpriteModel(
     val frontShiny: String?,
     val frontShinyFemale: String?,
     val other: OtherModel?
-)
+) {
+    fun toJson(): Map<String, Any?> {
+        return mapOf(
+            "back_default" to this.backDefault,
+            "back_female" to this.backFemale,
+            "back_shiny" to this.backShiny,
+            "back_shiny_female" to this.backShinyFemale,
+            "front_default" to this.frontDefault,
+            "front_female" to this.frontFemale,
+            "front_shiny" to this.frontShiny,
+            "front_shiny_female" to this.frontShinyFemale,
+            "other" to this.other
+        )
+    }
+}
 
 data class DreamWorldModel(
     val frontDefault: String?,
@@ -155,7 +169,20 @@ data class ShowdownModel(
     val frontFemale: String?,
     val frontShiny: String?,
     val frontShinyFemale: String?
-)
+) {
+    fun toJson(): Map<String, Any?> {
+        return mapOf(
+            "back_default" to this.backDefault,
+            "back_female" to this.backFemale,
+            "back_shiny" to this.backShiny,
+            "back_shiny_female" to this.backShinyFemale,
+            "front_default" to this.frontDefault,
+            "front_female" to this.frontFemale,
+            "front_shiny" to this.frontShiny,
+            "front_shiny_female" to this.frontShinyFemale
+        )
+    }
+}
 
 data class AbilityDetailModel(
     val name: String?,

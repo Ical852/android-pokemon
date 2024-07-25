@@ -3,6 +3,8 @@ package com.example.androidpokemon.utils
 import android.graphics.Color
 import com.example.androidpokemon.models.getallpokemonmodels.PokemonResultModel
 import com.example.androidpokemon.models.getpokemondetailmodels.PokemonDetailModel
+import com.example.androidpokemon.models.getpokemondetailmodels.ShowdownModel
+import com.example.androidpokemon.models.getpokemondetailmodels.SpriteModel
 import com.example.androidpokemon.models.getpokemonevolutionmodels.GetPokemonEvolutionModel
 
 class Utils {
@@ -92,17 +94,31 @@ class Utils {
         return setupEvolves
     }
 
-//    fun getGifList(show: Any): List<Any> {
-//        val list = mutableListOf<Any>()
-//        val setup = show.toJson()
-//
-//        list.add(show.frontDefault)
-//        for (key in setup.keys) {
-//            if (setup[key] != null && key != "frontDefault") {
-//                list.add(setup[key]!!)
-//            }
-//        }
-//
-//        return list
-//    }
+    fun getGifList(show: ShowdownModel): List<Any?> {
+        val list = mutableListOf<Any?>()
+        val setup = show.toJson()
+
+        list.add(show.frontDefault)
+        for ((key, value) in setup) {
+            if (value != null && key != "front_default") {
+                list.add(value)
+            }
+        }
+
+        return list
+    }
+
+    fun getPicList(sprites: SpriteModel): List<Any?> {
+        val list = mutableListOf<Any?>()
+        val setup = sprites.toJson()
+
+        list.add(sprites.frontDefault)
+        for ((key, value) in setup) {
+            if (value != null && key != "frontDefault" && key != "other") {
+                list.add(value)
+            }
+        }
+
+        return list
+    }
 }
