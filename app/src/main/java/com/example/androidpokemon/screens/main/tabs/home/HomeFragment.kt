@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.androidpokemon.databinding.FragmentHomeBinding
+import com.example.androidpokemon.models.DetailModel
+import com.example.androidpokemon.models.getpokemondetailmodels.PokemonDetailModel
 import com.example.androidpokemon.screens.detail.DetailActivity
 import org.koin.dsl.module
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -83,9 +85,26 @@ class HomeFragment : Fragment() {
 
     private val pokemonListAdapter by lazy {
         PokemonCardAdapter(arrayListOf()) { pokemon ->
+            fun getImage(detail: PokemonDetailModel): String {
+                if (detail.sprites?.other?.showdown?.frontDefault != null) {
+                    return detail.sprites.other.showdown.frontDefault;
+                }
+                if (detail.sprites?.frontDefault != null) {
+                    return detail.sprites.frontDefault
+                }
+                return ""
+            }
+
+            val detail = DetailModel(
+                getImage(pokemon.detail!!),
+                pokemon.name!!,
+                pokemon.detail!!.stats!!,
+                pokemon.detail!!.types!!
+            )
+
             startActivity(
                 Intent(requireActivity(), DetailActivity::class.java)
-                    .putExtra("pokemon_detail", pokemon.detail)
+                    .putExtra("pokemon_detail", detail)
             )
         }
     }

@@ -9,6 +9,7 @@
         android:id="@+id/tvStat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
         android:text="Hp"
         android:textColor="@color/gray"
         android:textSize="14dp"
@@ -16,8 +17,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:fontFamily="@font/poppins"
         android:id="@+id/tvValue"
-        android:layout_width="25dp"
+        android:layout_width="27dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
         android:text="45"
