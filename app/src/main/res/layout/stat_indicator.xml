@@ -6,12 +6,21 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvStat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
         android:text="Hp"
+        android:textColor="@color/gray"
+        android:textSize="14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvValue"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:text="45"
         android:textColor="@color/gray"
         android:textSize="14dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,15 +29,16 @@
     <ProgressBar
         android:id="@+id/statusMeter"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="250dp"
+        android:layout_width="0dp"
         android:layout_height="4dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
         android:max="100"
-        android:progress="0"
+        android:progress="50"
         android:progressDrawable="@drawable/progressbar_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/tvValue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        tools:layout_editor_absoluteY="39dp" />
+        app:layout_constraintStart_toEndOf="@+id/tvValue"
+        app:layout_constraintTop_toTopOf="@+id/tvValue" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

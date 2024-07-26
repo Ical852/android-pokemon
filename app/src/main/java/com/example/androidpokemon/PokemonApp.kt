@@ -2,6 +2,8 @@ package com.example.androidpokemon
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
+import com.example.androidpokemon.screens.detail.detailModule
+import com.example.androidpokemon.screens.main.tabs.home.detailViewModel
 import com.example.androidpokemon.screens.main.tabs.home.homeModule
 import com.example.androidpokemon.screens.main.tabs.home.homeViewModel
 import com.example.androidpokemon.services.networkModule
@@ -24,6 +26,8 @@ class PokemonApp: Application() {
             androidContext(this@PokemonApp)
             modules(
                 listOf(
+                    detailModule,
+                    detailViewModel,
                     homeModule,
                     homeViewModel,
                     networkModule,

@@ -19,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/pokemonName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -30,28 +31,104 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/backBtn" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pokemonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pokemonName">
+
+        <include
+            android:id="@+id/firstBadge"
+            layout="@layout/pokemon_type_badge" />
+
+        <include
+            android:id="@+id/secondBadge"
+            layout="@layout/pokemon_type_badge" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/pokemonImg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/pokemon_logo"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pokemonName" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="32dp"
-        android:backgroundTint="@color/white"
         android:background="@drawable/detail_desc_bg"
+        android:backgroundTint="@color/white"
+        android:orientation="vertical"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="24dp"
-            android:text="Hp"
-            android:textColor="@color/gray"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <include
+            android:id="@+id/hpIndicator"
+            layout="@layout/stat_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <include
+            android:id="@+id/atkIndicator"
+            layout="@layout/stat_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <include
+            android:id="@+id/defIndicator"
+            layout="@layout/stat_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <include
+            android:id="@+id/spAtkIndicator"
+            layout="@layout/stat_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <include
+            android:id="@+id/spDefIndicator"
+            layout="@layout/stat_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <include
+            android:id="@+id/spdIndicator"
+            layout="@layout/stat_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <include
+            android:id="@+id/totalIndicator"
+            layout="@layout/stat_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <Button
+            android:id="@+id/catchBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Catch"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
