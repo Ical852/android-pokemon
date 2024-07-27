@@ -6,13 +6,14 @@ import com.example.androidpokemon.screens.detail.detailModule
 import com.example.androidpokemon.screens.main.tabs.home.detailViewModel
 import com.example.androidpokemon.screens.main.tabs.home.homeModule
 import com.example.androidpokemon.screens.main.tabs.home.homeViewModel
-import com.example.androidpokemon.services.networkModule
-import com.example.androidpokemon.services.pokemonRepository
+import com.example.androidpokemon.services.pokemonservices.networkModule
+import com.example.androidpokemon.services.pokemonservices.pokemonRepository
+import com.example.androidpokemon.services.restservices.restNetworkModule
+import com.example.androidpokemon.services.restservices.restRepository
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
-import org.koin.dsl.module
 import timber.log.Timber
 
 class PokemonApp: Application() {
@@ -30,6 +31,8 @@ class PokemonApp: Application() {
                     detailViewModel,
                     homeModule,
                     homeViewModel,
+                    restNetworkModule,
+                    restRepository,
                     networkModule,
                     pokemonRepository,
                 )

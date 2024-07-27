@@ -1,29 +1,24 @@
 package com.example.androidpokemon.screens.detail
 
 import android.graphics.Color
-import android.graphics.drawable.ClipDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.androidpokemon.R
 import com.example.androidpokemon.databinding.ActivityDetailBinding
 import com.example.androidpokemon.databinding.StatIndicatorBinding
-import com.example.androidpokemon.models.DetailModel
-import com.example.androidpokemon.models.getpokemondetailmodels.PokemonDetailModel
-import com.example.androidpokemon.models.getpokemondetailmodels.StatsModel
-import com.example.androidpokemon.models.getpokemondetailmodels.TypeModel
+import com.example.androidpokemon.models.pokemonmodels.DetailModel
+import com.example.androidpokemon.models.pokemonmodels.StatsModel
+import com.example.androidpokemon.models.pokemonmodels.TypeModel
 import com.example.androidpokemon.screens.main.tabs.home.DetailViewModel
 import com.example.androidpokemon.utils.Utils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.dsl.module
-import java.sql.Types
 
 val detailModule = module {
     factory { DetailActivity() }

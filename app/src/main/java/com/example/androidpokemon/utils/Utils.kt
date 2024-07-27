@@ -1,11 +1,10 @@
 package com.example.androidpokemon.utils
 
-import android.graphics.Color
-import com.example.androidpokemon.models.getallpokemonmodels.PokemonResultModel
-import com.example.androidpokemon.models.getpokemondetailmodels.PokemonDetailModel
-import com.example.androidpokemon.models.getpokemondetailmodels.ShowdownModel
-import com.example.androidpokemon.models.getpokemondetailmodels.SpriteModel
-import com.example.androidpokemon.models.getpokemonevolutionmodels.GetPokemonEvolutionModel
+import com.example.androidpokemon.models.pokemonmodels.PokemonResultModel
+import com.example.androidpokemon.models.pokemonmodels.PokemonDetailModel
+import com.example.androidpokemon.models.pokemonmodels.ShowdownModel
+import com.example.androidpokemon.models.pokemonmodels.SpriteModel
+import com.example.androidpokemon.models.pokemonmodels.GetPokemonEvolutionModel
 
 class Utils {
     fun nullChecker(check: Any?): Any? {

@@ -1,7 +1,5 @@
-package com.example.androidpokemon.models.getallpokemonmodels
+package com.example.androidpokemon.models.pokemonmodels
 
-import com.example.androidpokemon.models.getpokemoncolormodels.GetPokemonColorModel
-import com.example.androidpokemon.models.getpokemondetailmodels.PokemonDetailModel
 import java.io.Serializable
 
 data class PokemonResultModel(

@@ -1,6 +1,5 @@
-package com.example.androidpokemon.models.getpokemondetailmodels
+package com.example.androidpokemon.models.pokemonmodels
 
-import com.example.androidpokemon.models.getpokemonspeciesmodel.GetPokemonSpeciesModel
 import com.example.androidpokemon.utils.Utils
 import java.io.Serializable
 
@@ -21,11 +20,6 @@ data class StatsModel(
 ): Serializable
 
 data class StatsDetailModel(
-    val name: String?,
-    val url: String?
-): Serializable
-
-data class SpeciesModel(
     val name: String?,
     val url: String?
 ): Serializable

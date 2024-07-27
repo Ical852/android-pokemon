@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.androidpokemon.R
 import com.example.androidpokemon.databinding.ItemPokemonCardBinding
-import com.example.androidpokemon.models.getallpokemonmodels.PokemonResultModel
+import com.example.androidpokemon.models.pokemonmodels.PokemonResultModel
 import com.example.androidpokemon.utils.Utils
 
 class PokemonCardAdapter(

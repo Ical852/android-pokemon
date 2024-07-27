@@ -1,11 +1,6 @@
-package com.example.androidpokemon.models.getpokemonevolutionmodels
+package com.example.androidpokemon.models.pokemonmodels
 
 import java.io.Serializable
-
-data class SpeciesModel(
-    val name: String?,
-    val url: String?
-): Serializable
 
 data class EvolveToModel(
     val isBaby: Boolean?,

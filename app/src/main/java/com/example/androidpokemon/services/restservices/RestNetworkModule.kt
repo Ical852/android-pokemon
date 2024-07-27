@@ -1,4 +1,4 @@
-package com.example.androidpokemon.services
+package com.example.androidpokemon.services.restservices
 
 import com.example.androidpokemon.BuildConfig
 import com.google.gson.FieldNamingPolicy
@@ -9,7 +9,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-val networkModule = module {
+val restNetworkModule = module {
     single { provideOkhttpClient() }
     single { provideRetrofit( get() ) }
     single { provideNewsApi( get() ) }
@@ -28,10 +28,10 @@ val gson = GsonBuilder()
 
 fun provideRetrofit(okHttpClient: OkHttpClient) : Retrofit {
     return Retrofit.Builder()
-        .baseUrl( BuildConfig.BASE_URL )
+        .baseUrl( BuildConfig.REST_BASE_URL )
         .client( okHttpClient )
         .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
 }
 
-fun provideNewsApi(retrofit: Retrofit) : PokemonApiClient = retrofit.create(PokemonApiClient::class.java)
+fun provideNewsApi(retrofit: Retrofit) : RestApiClient = retrofit.create(RestApiClient::class.java)

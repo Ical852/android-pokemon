@@ -1,11 +1,10 @@
 package com.example.androidpokemon.screens.main.tabs.home
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.androidpokemon.models.getallpokemonmodels.PokemonModel
-import com.example.androidpokemon.services.PokemonRepository
+import com.example.androidpokemon.models.pokemonmodels.PokemonModel
+import com.example.androidpokemon.services.pokemonservices.PokemonRepository
 import com.example.androidpokemon.utils.Utils
 import kotlinx.coroutines.launch
 import org.koin.dsl.module

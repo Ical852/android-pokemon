@@ -20,9 +20,11 @@ android {
 
     buildTypes {
         debug {
+            buildConfigField("String", "REST_BASE_URL", "\"http://192.168.100.10:8000/api/\"")
             buildConfigField("String", "BASE_URL", "\"https://pokeapi.co/api/v2/\"")
         }
         release {
+            buildConfigField("String", "REST_BASE_URL", "\"http://192.168.100.10:8000/api/\"")
             buildConfigField("String", "BASE_URL", "\"https://pokeapi.co/api/v2/\"")
 
             isMinifyEnabled = false

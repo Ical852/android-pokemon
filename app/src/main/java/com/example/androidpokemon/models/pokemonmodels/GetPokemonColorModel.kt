@@ -1,4 +1,4 @@
-package com.example.androidpokemon.models.getpokemoncolormodels
+package com.example.androidpokemon.models.pokemonmodels
 
 import java.io.Serializable
 

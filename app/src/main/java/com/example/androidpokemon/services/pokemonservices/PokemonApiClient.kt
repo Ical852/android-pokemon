@@ -1,11 +1,11 @@
-package com.example.androidpokemon.services
+package com.example.androidpokemon.services.pokemonservices
 
-import com.example.androidpokemon.models.getallpokemonmodels.PokemonModel
-import com.example.androidpokemon.models.getpokemoncolormodels.GetPokemonColorModel
-import com.example.androidpokemon.models.getpokemondetailmodels.EggGroupModel
-import com.example.androidpokemon.models.getpokemondetailmodels.PokemonDetailModel
-import com.example.androidpokemon.models.getpokemonevolutionmodels.GetPokemonEvolutionModel
-import com.example.androidpokemon.models.getpokemonspeciesmodel.GetPokemonSpeciesModel
+import com.example.androidpokemon.models.pokemonmodels.PokemonModel
+import com.example.androidpokemon.models.pokemonmodels.GetPokemonColorModel
+import com.example.androidpokemon.models.pokemonmodels.EggGroupModel
+import com.example.androidpokemon.models.pokemonmodels.PokemonDetailModel
+import com.example.androidpokemon.models.pokemonmodels.GetPokemonEvolutionModel
+import com.example.androidpokemon.models.pokemonmodels.GetPokemonSpeciesModel
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Url
