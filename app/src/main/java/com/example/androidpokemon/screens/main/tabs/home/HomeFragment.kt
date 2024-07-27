@@ -9,9 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.androidpokemon.databinding.FragmentHomeBinding
-import com.example.androidpokemon.models.pokemonmodels.DetailModel
+import com.example.androidpokemon.models.DetailModel
 import com.example.androidpokemon.models.pokemonmodels.PokemonDetailModel
-import com.example.androidpokemon.screens.detail.DetailActivity
+import com.example.androidpokemon.screens.detail.pokemon.DetailActivity
 import org.koin.dsl.module
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -99,7 +99,8 @@ class HomeFragment : Fragment() {
                 getImage(pokemon.detail!!),
                 pokemon.name!!,
                 pokemon.detail!!.stats!!,
-                pokemon.detail!!.types!!
+                pokemon.detail!!.types!!,
+                pokemon.url
             )
 
             startActivity(

@@ -6,7 +6,7 @@
     android:background="@color/calm"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.detail.pokemon.DetailActivity">
+    tools:context=".screens.detail.mypokemon.MyPokemonDetailActivity">
 
     <ImageView
         android:id="@+id/backBtn"
@@ -127,20 +127,43 @@
             android:layout_height="30dp" />
 
         <ProgressBar
-            android:id="@+id/loadingCatch"
             android:visibility="gone"
+            android:id="@+id/loadingContent"
             android:layout_marginTop="6dp"
             android:layout_width="match_parent"
             android:layout_height="45dp"/>
 
-        <Button
-            android:enabled="false"
-            android:id="@+id/catchBtn"
+        <LinearLayout
+            android:id="@+id/actionContent"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="Catch"
-            android:textAllCaps="false" />
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/releaseBtn"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Release"
+                android:textAllCaps="false" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/renameBtn"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Rename"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 

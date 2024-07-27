@@ -1,6 +1,7 @@
 package com.example.androidpokemon.services.restservices
 
 import com.example.androidpokemon.models.restmodels.request.CatchRequestModel
+import com.example.androidpokemon.models.restmodels.request.FindRequestModel
 import com.example.androidpokemon.models.restmodels.request.RenameRequestModel
 import com.example.androidpokemon.models.restmodels.response.GetAllMyPokemonModel
 import com.example.androidpokemon.models.restmodels.response.GetMyPokemonDetail
@@ -14,32 +15,32 @@ val restRepository = module {
 class RestRepository (
     private val api: RestApiClient,
 ) {
-    suspend fun getAllMyPokemon() : GetAllMyPokemonModel {
+    suspend fun getAllMyPokemon() : GetAllMyPokemonModel? {
         return api.getAllMyPokemon()
     }
 
     suspend fun findMyPokemon(
-        url: String
-    ) : GetMyPokemonDetail {
-        return api.findMyPokemon(url)
+        requestModel: FindRequestModel
+    ) : GetMyPokemonDetail? {
+        return api.findMyPokemon(requestModel)
     }
 
     suspend fun catchPokemon(
         request: CatchRequestModel
-    ): PostResponseModel {
+    ): PostResponseModel? {
         return api.catchPokemon(request)
     }
 
     suspend fun releasePokemon(
         id: Int
-    ): PostResponseModel {
+    ): PostResponseModel? {
         return api.releasePokemon(id)
     }
 
     suspend fun renamePokemon(
         id: Int,
         request: RenameRequestModel
-    ): PostResponseModel {
+    ): PostResponseModel? {
         return api.renamePokemon(id, request)
     }
 }

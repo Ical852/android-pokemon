@@ -1,6 +1,7 @@
 package com.example.androidpokemon.services.restservices
 
 import com.example.androidpokemon.models.restmodels.request.CatchRequestModel
+import com.example.androidpokemon.models.restmodels.request.FindRequestModel
 import com.example.androidpokemon.models.restmodels.request.RenameRequestModel
 import com.example.androidpokemon.models.restmodels.response.GetAllMyPokemonModel
 import com.example.androidpokemon.models.restmodels.response.GetMyPokemonDetail
@@ -12,26 +13,26 @@ import retrofit2.http.Path
 
 interface RestApiClient {
     @GET("pokemons")
-    suspend fun getAllMyPokemon(): GetAllMyPokemonModel
+    suspend fun getAllMyPokemon(): GetAllMyPokemonModel?
 
-    @GET("find/{url}")
+    @POST("find")
     suspend fun findMyPokemon(
-        @Path("url") url: String
-    ): GetMyPokemonDetail
+        @Body request: FindRequestModel
+    ): GetMyPokemonDetail?
 
     @POST("catch")
     suspend fun catchPokemon(
         @Body request: CatchRequestModel
-    ): PostResponseModel
+    ): PostResponseModel?
 
     @POST("release/{id}")
     suspend fun releasePokemon(
         @Path("id") id: Int
-    ): PostResponseModel
+    ): PostResponseModel?
 
     @POST("rename/{id}")
     suspend fun renamePokemon(
         @Path("id") id: Int,
         @Body request: RenameRequestModel
-    ): PostResponseModel
+    ): PostResponseModel?
 }

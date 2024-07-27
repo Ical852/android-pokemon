@@ -13,7 +13,7 @@ val homeViewModel = module {
     factory { HomeViewModel( get() ) }
 }
 
-class HomeViewModel(val repository: PokemonRepository): ViewModel() {
+class HomeViewModel(private val repository: PokemonRepository): ViewModel() {
     val loading by lazy { MutableLiveData<Boolean>() }
     val extendLoading by lazy { MutableLiveData<Boolean>() }
     val failed by lazy { MutableLiveData<Boolean>() }
@@ -38,6 +38,8 @@ class HomeViewModel(val repository: PokemonRepository): ViewModel() {
             loading.value = true
         }
 
+        count.value = 0
+        extendCount.value = 0
         failed.value = false
         extendFailed.value = false
         viewModelScope.launch {

@@ -2,10 +2,14 @@ package com.example.androidpokemon
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
-import com.example.androidpokemon.screens.detail.detailModule
-import com.example.androidpokemon.screens.main.tabs.home.detailViewModel
+import com.example.androidpokemon.screens.detail.mypokemon.pokemonDetailModule
+import com.example.androidpokemon.screens.detail.mypokemon.pokemonDetailViewModel
+import com.example.androidpokemon.screens.detail.pokemon.detailModule
+import com.example.androidpokemon.screens.detail.pokemon.detailViewModel
 import com.example.androidpokemon.screens.main.tabs.home.homeModule
 import com.example.androidpokemon.screens.main.tabs.home.homeViewModel
+import com.example.androidpokemon.screens.main.tabs.mypokemon.myPokemonModule
+import com.example.androidpokemon.screens.main.tabs.mypokemon.myPokemonViewModel
 import com.example.androidpokemon.services.pokemonservices.networkModule
 import com.example.androidpokemon.services.pokemonservices.pokemonRepository
 import com.example.androidpokemon.services.restservices.restNetworkModule
@@ -27,8 +31,12 @@ class PokemonApp: Application() {
             androidContext(this@PokemonApp)
             modules(
                 listOf(
+                    pokemonDetailModule,
+                    pokemonDetailViewModel,
                     detailModule,
                     detailViewModel,
+                    myPokemonModule,
+                    myPokemonViewModel,
                     homeModule,
                     homeViewModel,
                     restNetworkModule,

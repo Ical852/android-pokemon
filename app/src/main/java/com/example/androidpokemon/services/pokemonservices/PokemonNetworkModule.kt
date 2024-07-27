@@ -10,28 +10,41 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 val networkModule = module {
-    single { provideOkhttpClient() }
-    single { provideRetrofit( get() ) }
-    single { provideNewsApi( get() ) }
+    single { providePokemonOkhttpClient() }
+    single { providePokemonRetrofit( get() ) }
+    single { providePokemonsApi( get() ) }
 }
 
-fun provideOkhttpClient() : OkHttpClient {
-    return OkHttpClient.Builder()
-        .addInterceptor(
-            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-        ).build()
+data class PokemonHttpClient(
+    val httpClient: OkHttpClient
+)
+fun providePokemonOkhttpClient() : PokemonHttpClient {
+    val httpClient = PokemonHttpClient(
+        OkHttpClient.Builder()
+            .addInterceptor(
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            ).build()
+    )
+    return httpClient
 }
 
+data class PokemonRetrofit(
+    val retrofit: Retrofit
+)
 val gson = GsonBuilder()
     .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
     .create()
-
-fun provideRetrofit(okHttpClient: OkHttpClient) : Retrofit {
-    return Retrofit.Builder()
-        .baseUrl( BuildConfig.BASE_URL )
-        .client( okHttpClient )
-        .addConverterFactory(GsonConverterFactory.create(gson))
-        .build()
+fun providePokemonRetrofit(pokemonHttp: PokemonHttpClient) : PokemonRetrofit {
+    val retrofit = PokemonRetrofit(
+        Retrofit.Builder()
+            .baseUrl( BuildConfig.BASE_URL )
+            .client( pokemonHttp.httpClient )
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
+    )
+    return retrofit
 }
 
-fun provideNewsApi(retrofit: Retrofit) : PokemonApiClient = retrofit.create(PokemonApiClient::class.java)
+fun providePokemonsApi(pokemonRetrofit: PokemonRetrofit) : PokemonApiClient {
+    return pokemonRetrofit.retrofit.create(PokemonApiClient::class.java)
+}

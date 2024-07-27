@@ -10,28 +10,41 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 val restNetworkModule = module {
-    single { provideOkhttpClient() }
-    single { provideRetrofit( get() ) }
-    single { provideNewsApi( get() ) }
+    single { provideRestOkhttpClient() }
+    single { provideRestRetrofit( get() ) }
+    single { provideRestApi( get() ) }
 }
 
-fun provideOkhttpClient() : OkHttpClient {
-    return OkHttpClient.Builder()
-        .addInterceptor(
-            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-        ).build()
+data class RestHttpClient(
+    val httpClient: OkHttpClient
+)
+fun provideRestOkhttpClient() : RestHttpClient {
+    val httpClient = RestHttpClient(
+        OkHttpClient.Builder()
+            .addInterceptor(
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            ).build()
+    )
+    return httpClient
 }
 
+data class RestRetrofit(
+    val retrofit: Retrofit
+)
 val gson = GsonBuilder()
     .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
     .create()
-
-fun provideRetrofit(okHttpClient: OkHttpClient) : Retrofit {
-    return Retrofit.Builder()
-        .baseUrl( BuildConfig.REST_BASE_URL )
-        .client( okHttpClient )
-        .addConverterFactory(GsonConverterFactory.create(gson))
-        .build()
+fun provideRestRetrofit(restHttpClient: RestHttpClient) : RestRetrofit {
+    val retrofit = RestRetrofit(
+        Retrofit.Builder()
+            .baseUrl( BuildConfig.REST_BASE_URL )
+            .client( restHttpClient.httpClient )
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
+    )
+    return retrofit
 }
 
-fun provideNewsApi(retrofit: Retrofit) : RestApiClient = retrofit.create(RestApiClient::class.java)
+fun provideRestApi(restRetrofit: RestRetrofit) : RestApiClient {
+    return restRetrofit.retrofit.create(RestApiClient::class.java)
+}
